@@ -22,29 +22,33 @@
     <div class="head-bg">
       <img :src="seller.avatar" width="100%">
     </div>
-    <transition name="fade">
-    <div v-show="coverShow" class="head-cover">
-      <!-- <div class="cover-bg"></div> -->
-      <div class="seller-complete-info">
-        <h3>{{seller.name}}</h3>
-        <v-star :size="48" :score="seller.score"></v-star>  
-        <div class="info-box">        
-          <h3>优惠信息</h3>
-          <div v-if="seller.supports">
-            <div v-for="support in seller.supports" class="info-row">
-              <span class="icon" :class="classMap[support.type]"></span>
-              <span class="text">{{support.description}}</span>
+    <transition name="fade">  
+      <div v-show="coverShow" class="head-cover">
+        <div class="cover-out">
+
+        
+        <div class="seller-complete-info">
+          <h3>{{seller.name}}</h3>
+          <v-star :size="48" :score="seller.score"></v-star>  
+          <div class="info-box">        
+            <h3>优惠信息</h3>
+            <div v-if="seller.supports">
+              <div v-for="support in seller.supports" class="info-row">
+                <span class="icon" :class="classMap[support.type]"></span>
+                <span class="text">{{support.description}}</span>
+              </div>
+              
             </div>
-            
           </div>
+          <div class="info-box">
+            <h3>商家公告</h3>
+            <p>{{seller.bulletin}}</p>
+          </div>
+          <div @click="hideShow" class="close"><span class="icon-close"></span></div>
         </div>
-        <div class="info-box">
-          <h3>商家公告</h3>
-          <p>{{seller.bulletin}}</p>
+
         </div>
-        <div @click="hideShow" class="close"><span class="icon-close"></span></div>
       </div>
-    </div>
     </transition>
   </div>
 </template>
@@ -217,6 +221,7 @@
     }
 
   }
+ 
   .head-cover{
     position: fixed;
     z-index: 99;
@@ -225,29 +230,28 @@
     transform: translateX(-50%);   
     background: rgba(7,17,27,0.8);
     backdrop-filter: blur(10px);
-    width: 100%;
+    width: 100vw;
     max-width: 420px;
     height: 100%;
     overflow: auto;
-    &.fade-enter, .fade-leave{
+    overflow: hidden;
+    .cover-out{
+      position: absolute; 
+      left: 0;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      height: 100vh;
+    }
+    &.fade-enter, &.fade-leave{
       &-active{
-        transition: all 2s;
+        transition: all 0.5s;
       }
       opacity: 0;
     }
     &.fade-leave-to{
       opacity: 0;
     }
-    .cover-bg{
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(7,17,27,0.8);
-      filter: blur(100px);
-      z-index: -1;
-    }
+    
     .seller-complete-info{
       position: relative;
       padding-top: 64px;
@@ -255,6 +259,8 @@
       box-sizing: border-box;
       color: #fff;
       font-size: 0;
+      width: 100vw;
+      max-width: 420px;
       min-height: 100%;
       &>h3{
         font-size: 16px;
@@ -325,6 +331,4 @@
       }
     }
   }
-  
-  
 </style>
