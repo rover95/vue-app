@@ -55,6 +55,7 @@
 
 <script>
   import star from '../star/star';
+  
   export default {
     props: {
       seller: {
@@ -233,7 +234,6 @@
     width: 100vw;
     max-width: 420px;
     height: 100%;
-    overflow: auto;
     overflow: hidden;
     .cover-out{
       position: absolute; 
@@ -241,6 +241,7 @@
       overflow-x: hidden;
       overflow-y: scroll;
       height: 100vh;
+      
     }
     &.fade-enter, &.fade-leave{
       &-active{

@@ -22,3 +22,20 @@
     background-image: url($url + '@3x.png');
   }
 }
+@mixin spt-icon($s:1){
+  .decrease{
+    @include bg-img('decrease_'+ $s);
+  }
+  .discount{
+    @include bg-img('discount_'+ $s);
+  }
+  .guarantee{
+    @include bg-img('guarantee_'+ $s);
+  }
+  .invoice{
+    @include bg-img('invoice_'+ $s);
+  }
+  .special{
+    @include bg-img('special_'+ $s);
+  }
+}

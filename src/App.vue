@@ -21,7 +21,7 @@
 
 <script>
   import header from "./components/header/header.vue";
-  const ERR_NUN = 0;  // 错误代码，0表示正确
+  const ERR_NUM = 0;  // 错误代码，0表示正确
 
   export default {
     data() {
@@ -32,9 +32,9 @@
     created() {
       this.$http.get('/api/seller').then((res) => {
         res = res.body;
-        if (res.errno === ERR_NUN) {
+        if (res.errno === ERR_NUM) {
           this.seller = res.data;
-          console.log(this.seller);
+          // console.log(this.seller);
         }
       });
     },
@@ -71,11 +71,7 @@
       }
     }
   }
-  
-  
-  
-  
-  
+
   
     
   
