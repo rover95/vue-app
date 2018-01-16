@@ -2,6 +2,7 @@
   <div class="goods">
     <div class="goods-content">
 
+      <!-- 左侧菜单区 -->
       <div class="meun-wrapper">
         <div class="hide-scroll">
           <ul class="meun">
@@ -13,6 +14,7 @@
         </div>
       </div>
 
+      <!-- 右侧商品区 -->
       <div class="content-wrapper">
         <ul class="content">
           <li v-for="item in goods">
@@ -50,12 +52,13 @@
 
     </div>
     
+    <!-- 底部购物车 -->
     <div class="footer">
       <div class="icon">
         <span class="icon-shopping_cart"></span>
       </div>
       <span class="total-price">￥0</span>
-      <span class="delivery-price">另需配送费￥3元</span>
+      <span class="delivery-price">另需配送费￥元</span>
       <div class="min-price">￥20元起送</div>
     </div>
   </div>
@@ -76,13 +79,13 @@
     },
     data() {
       return {
-        goods: [],
-        foodNum: {}
+        goods: []
       };
     },
     methods: {
     },
     created() {
+      console.log(this.$route);
       this.$http.get('api/goods').then((res) => {
         res = res.body;
         if (res.errno === ERR_NUM){
@@ -283,7 +286,7 @@
         line-height: 48px;
         text-align: center;
         color: rgba($color: #ffffff, $alpha: 0.4);
-        background-color: rgba($color: #fff, $alpha: 0.1);
+        background-color: #2b333b;
       }
     }
   }
